@@ -1,6 +1,6 @@
 import random
 
-modo_de_jogo = int(input())
+modo_de_jogo = int(input('Indique o modo de jogo\n 0 - RÁPIDO\N 1 - DEMORADO'))
 numero_maximo = 0
 if modo_de_jogo == 1:
     numero_maximo = 40
@@ -27,7 +27,7 @@ def gerar_cartela():
             numeros_possiveis = [n for n in range(a, b)]
             for _ in range(0,nlinhas):
                 n = random.randint(0, len(numeros_possiveis) - 1)
-                li.append(numeros_possiveis[n])
+                li.append([numeros_possiveis[n], False])
                 numeros_possiveis.pop(n)
             a += 10
             b += 10
@@ -41,15 +41,23 @@ def sortear_numero():
     numeros_possiveis.remove(sorteado)
     return(sorteado)
 
-def comecar_jogo():
+def status_de_sorteio(cartelas):
+    for c in cartelas:
+        for l in c:
+            if c[0] in numeros_sorteados:
+                c[1] = True
+    for c in cartelas:
+        for l in c:
+            if not c[0] in numeros_sorteados:
+                return False
+    return True
     
 
 
-    print(gerar_cartela())
 
-    i=0
-    while i < 30:
-        print(sortear_numero())
-        i+=1
+def comecar_jogo():
+    cartelas_do_jogo = gerar_cartela()
+
+
 
 comecar_jogo()
