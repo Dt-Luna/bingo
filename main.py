@@ -52,7 +52,12 @@ def status_de_sorteio(cartelas):
                 return False
     return True
     
-
+def exibir(cartela,sorteado):
+    print(f'Última dezena sorteada até o momento: {sorteado}\n Dezenas sorteadas até o momento: {numeros_sorteados}')
+    # for _ in cartela:
+    #     for _ in _:
+    #         for i in _:
+                
 
 
 def comecar_jogo():
