@@ -67,12 +67,15 @@ def exibir(cartela, sorteado):
                 f'[{num:2}]' if not marcado else f'({num:2})' for num, marcado in linha
             )
             print(linha_formatada)
-        print('-' * 20)
+        print('-' * 30)
                 
 
 
 def comecar_jogo():
     cartelas_do_jogo = gerar_cartela()
+    sorteado=sortear_numero()
+    exibir(cartelas_do_jogo, sorteado)
+    
 
 
 
