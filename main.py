@@ -73,9 +73,10 @@ def exibir(cartela, sorteado):
 
 def comecar_jogo():
     cartelas_do_jogo = gerar_cartela()
-    sorteado=sortear_numero()
-    exibir(cartelas_do_jogo, sorteado)
-    
+    while True:
+        sorteado=sortear_numero()
+        exibir(cartelas_do_jogo, sorteado)
+        
 
 
 
