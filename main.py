@@ -52,11 +52,23 @@ def status_de_sorteio(cartelas):
                 return False
     return True
     
-def exibir(cartela,sorteado):
-    print(f'Última dezena sorteada até o momento: {sorteado}\n Dezenas sorteadas até o momento: {numeros_sorteados}')
-    # for _ in cartela:
-    #     for _ in _:
-    #         for i in _:
+def exibir(cartela, sorteado):
+    print(f'\nÚltima dezena sorteada: {sorteado}')
+    print(f'Dezenas sorteadas até o momento: {numeros_sorteados}\n')
+    
+    for coluna in cartela:
+        for linha in coluna:
+            for i in range(len(linha)):
+                numero, marcado = linha[i]
+                if numero in numeros_sorteados:
+                    linha[i][1] = True  
+                
+        for linha in zip(*coluna): 
+            linha_formatada = " | ".join(
+                f'[{num:2}]' if not marcado else f'({num:2})' for num, marcado in linha
+            )
+            print(linha_formatada)
+        print('-' * 20)
                 
 
 
