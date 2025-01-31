@@ -76,7 +76,7 @@ def comecar_jogo():
     while True:
         sorteado=sortear_numero()
         exibir(cartelas_do_jogo, sorteado)
-        
+        input()
 
 
 
