@@ -41,43 +41,50 @@ def sortear_numero():
     return(sorteado)
 
 def status_de_sorteio(cartelas):
-    for c in cartelas:
-        for l in c:
-            if c[0] in numeros_sorteados:
-                c[1] = True
-    for c in cartelas:
-        for l in c:
-            if not c[0] in numeros_sorteados:
-                return False
-    return True
+    for c in enumerate(cartelas):
+        incompleto = False
+        for l in c[1]:
+            for e in l:
+                if not e[0] in numeros_sorteados:
+                    incompleto = True
+        if incompleto == False:
+            return [True, c[0]]
+    return [False]
     
-def exibir(cartela, sorteado):
-    print(f'\nÚltima dezena sorteada: {sorteado}')
-    print(f'Dezenas sorteadas até o momento: {numeros_sorteados}\n')
-    
-    for coluna in cartela:
-        for linha in coluna:
+def jogadores(cartela):
+    for coluna in enumerate(cartela):
+        print(f'Jogador: {coluna[0] + 1}')
+        for linha in coluna[1]:
             for i in range(len(linha)):
                 numero, marcado = linha[i]
                 if numero in numeros_sorteados:
                     linha[i][1] = True  
                 
-        for linha in zip(*coluna): 
+        for linha in zip(*coluna[1]): 
             linha_formatada = " | ".join(
-                f'[{num:2}]' if not marcado else f'({num:2})' for num, marcado in linha
+                f' {num:2} ' if not marcado else f'({num:2})' for num, marcado in linha
             )
             print(linha_formatada)
         print('-' * 30)
                 
-
+def exibir(sorteado):
+    print(f'\nÚltima dezena sorteada: {sorteado}')
+    print(f'Dezenas sorteadas até o momento: {numeros_sorteados}\n')
 
 def comecar_jogo():
     cartelas_do_jogo = gerar_cartela()
+    exibir([])
     while True:
         sorteado=sortear_numero()
-        exibir(cartelas_do_jogo, sorteado)
-        input()
+        exibir(sorteado)
+        jogadores(cartelas_do_jogo)
 
+               
+        input('Pressione ENTER para continuar')
 
+        situacao_de_vitoria = status_de_sorteio(cartelas_do_jogo)
+        if situacao_de_vitoria[0]:
+            print(f'Jogador {situacao_de_vitoria[1] + 1} é o ganhador =)')
+            break
 
 comecar_jogo()
