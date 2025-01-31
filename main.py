@@ -1,6 +1,5 @@
 import random
-
-modo_de_jogo = int(input('Indique o modo de jogo\n 0 - RÁPIDO\N 1 - DEMORADO'))
+modo_de_jogo = int(input('Indique o modo de jogo\n0 - RÁPIDO\n 1 - DEMORADO \n'))
 numero_maximo = 0
 if modo_de_jogo == 1:
     numero_maximo = 40
